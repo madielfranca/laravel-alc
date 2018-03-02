@@ -14,7 +14,12 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                  @foreach($notice as $notice)
+                   <h1>{{$notice->title}}</h1> <br>
+                   <p>{{$notice->description}}</p> <br>
+                    <b>Autor: {{$notice->user->name}}</b> <br>
+
+                  @endforeach
                 </div>
             </div>
         </div>

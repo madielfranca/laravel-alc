@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Notice;
 
 class HomeController extends Controller
 {
@@ -21,8 +22,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Notice $notice)
     {
-        return view('home');
+        $notice = Notice::all();
+        if ($notice){
+            $data['notice'] = $notice;
+        }
+
+        return view('home')->with($data);
     }
 }
