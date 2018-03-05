@@ -24,11 +24,19 @@ class HomeController extends Controller
      */
     public function index(Notice $notice)
     {
-        $notice = Notice::all();
-        if ($notice){
-            $data['notice'] = $notice;
+        $notices = $notice->where('user_id', auth()->user()->id)->get();
+        if ($notices){
+            $data['notices'] = $notices;
         }
 
         return view('home')->with($data);
+    }
+
+    public function update($idNotice)
+    {
+        $notice = Notice::find($idNotice);
+        $this->authorize('update-post', $notice);
+
+        return view('update-post', compact('notice')) ;
     }
 }
