@@ -14,11 +14,12 @@
                         </div>
                     @endif
 
-                  @foreach($notice as $notice)
+                  @foreach($notices as $notice)
+                            <hr>
                    <h1>{{$notice->title}}</h1> <br>
                    <p>{{$notice->description}}</p> <br>
                     <b>Autor: {{$notice->user->name}}</b> <br>
-
+                            <a href="{{url("/notice/$notice->id/update")}}">Editar</a>
                   @endforeach
                 </div>
             </div>
